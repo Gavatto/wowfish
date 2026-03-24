@@ -3,6 +3,7 @@ from PIL import Image, ImageGrab
 import numpy as np
 import cv2 as cv
 from threading import Thread
+from fishing.fishing_agent import FishingAgent
 
 class MainAgent:
     def __init__(self) -> None:
@@ -25,13 +26,13 @@ def update_screen(agent):
         agent.curv_img = cv.cvtColor(agent.curv_img, cv.COLOR_RGB2BGR)
         agent.curv_imgHSV = cv.cvtColor(agent.curv_img, cv.COLOR_BGR2HSV)
 
-        cv.imshow("Computer Vision", agent.curv_img)
-        cv.imshow("Computer Vision - HSV", agent.curv_imgHSV)
+        #cv.imshow("Computer Vision", agent.curv_img)
+        #cv.imshow("Computer Vision - HSV", agent.curv_imgHSV)
         key = cv.waitKey(1)
         if key == ord("q"):
             break
         ex_time = time.time() - t0
-        print(f"FPS: " + str(1/ex_time))
+        #print(f"FPS: " + str(1/ex_time))
         t0 = time.time()
 
 
@@ -57,7 +58,9 @@ if __name__ == "__main__":
         elif user_input == "z":
             pass
         elif user_input == "f":
-            pass
+            fishing_agent = FishingAgent(main_agent)
+            fishing_agent.run()
+            
         elif user_input == "q":
             cv.destroyAllWindows()
             break

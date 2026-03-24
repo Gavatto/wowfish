@@ -1,5 +1,3 @@
-
-
 import cv2 as cv
 import numpy as np
 import pyautogui
@@ -8,7 +6,7 @@ import time
 class FishingAgent:
     def __init__(self, main_agent) -> None:
         self.main_agent = main_agent
-        self.fishing_target = cv.imread("")
+        self.fishing_target = cv.imread("C:\\Users\\Kulakovsky\\wowfish\\fishing\\assets\\Screenshot_1.png")
         self.fishing_thread = None
 
     def cast_lure(self):
@@ -19,7 +17,11 @@ class FishingAgent:
 
 
     def find_lure(self):
-        pass
+        lure_location = cv.matchTemplate(self.main_agent.curv_img, self.fishing_target, cv.TM_CCOEFF)
+        lure_location_arr = np.array(lure_location)
+        cv.imshow("Lure Location", lure_location_arr)
+        cv.waitKey(0)
+
 
     def move_to_lure(self):
         pass
@@ -31,4 +33,11 @@ class FishingAgent:
         pass
 
     def run(self):
-        pass
+        while True:
+            self.cast_lure()
+            time.sleep(5)
+
+if __name__ == "__main__":
+    main_agent = None
+    fishing_agent = FishingAgent(main_agent=main_agent)
+    fishing_agent.run()
