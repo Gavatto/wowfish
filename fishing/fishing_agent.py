@@ -17,7 +17,7 @@ class FishingAgent:
 
 
     def find_lure(self):
-        lure_location = cv.matchTemplate(self.main_agent.curv_img, self.fishing_target, cv.TM_CCOEFF)
+        lure_location = cv.matchTemplate(self.main_agent.curv_img, self.fishing_target, cv.TM_CCOEFF_NORMED)
         lure_location_arr = np.array(lure_location)
         cv.imshow("Lure Location", lure_location_arr)
         cv.waitKey(0)
