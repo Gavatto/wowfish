@@ -6,7 +6,7 @@ import time
 class FishingAgent:
     def __init__(self, main_agent) -> None:
         self.main_agent = main_agent
-        self.fishing_target = cv.imread("C:\\Users\\Kulakovsky\\wowfish\\fishing\\assets\\Screenshot_1.png")
+        self.fishing_target = cv.imread("C:\\Users\\Kulakovsky\\wowfish\\fishing\\assets\\Screenshot_2.png")
         self.fishing_thread = None
 
     def cast_lure(self):
